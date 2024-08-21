@@ -1,7 +1,9 @@
+import Product from "./Product";
+
 const Dashboard = () => {
   return (
     <div>
-      <h1>DashBoard</h1>
+     <Product/>
     </div>
   )
 }

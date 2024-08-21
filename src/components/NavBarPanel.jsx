@@ -20,6 +20,11 @@ const NavBar = () => {
                 Products
               </Nav.Link>
             </Nav>
+            <Nav className="ms-auto"> {/* This aligns the 'My Bag' text to the right */}
+              <Nav.Link as={Link} to="/Cart">
+                My Bag 0
+              </Nav.Link>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
