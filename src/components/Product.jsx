@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'; // Import Button correctly
+import Button from 'react-bootstrap/Button';
 
 const Product = () => {
   const [products, getProduct] = useState([]);
@@ -15,24 +15,27 @@ const Product = () => {
   }, []);
 
   const cards = products.map(product => (
-    <div className="col-md-3" key={product.id}>
-      <Card style={{ width: '18rem', marginBottom: '20px' }}>
+    <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3" key={product.id}>
+      <Card style={{ width: '100%', marginBottom: '20px' }}>
+        <Card.Img variant="top" src={product.image} style={{width: '100%', height: '200px', objectFit: 'contain'}} />
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>
-            {product.description.substring(0, 100)}...
+            ${product.price.toFixed(2)}
           </Card.Text>
-          <Button variant="primary" href="#">
-            Go somewhere
-          </Button>
         </Card.Body>
+        <Card.Footer>
+        <Button variant="primary" href="#">
+           Add To Cart
+          </Button>
+        </Card.Footer>
       </Card>
     </div>
   ));
 
   return (
-    <div>
-      <h1>Product Dashboard</h1>
+    <div className="container">
+      <h1 className="my-4 text-center">Product Dashboard</h1>
       <div className="row">
         {cards}
       </div>
