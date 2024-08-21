@@ -1,10 +1,11 @@
 import './App.css'
+import Product from './components/Product'
 function App() {
  
 
   return (
    <div>
-    <h1 className='bg-green-700'>This is piv nati</h1>
+   <Product/>
    </div>
   )
 }
