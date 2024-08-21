@@ -1,33 +1,43 @@
-import { useState ,useEffect } from "react";
- import Card from 'react-bootstrap/Card';
- 
-const Product = ()=>{
-const [products, getProduct] = useState([]);
-  useEffect(()=>{
-    // fetch the api data here
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button'; // Import Button correctly
+
+const Product = () => {
+  const [products, getProduct] = useState([]);
+
+  useEffect(() => {
+    // Fetch the API data
     fetch('https://fakestoreapi.com/products')
-    .then(data=>data.json() )
-    .then(Result=>getProduct(Result))
-  },[]);
-  const cards = products.map(product=>(
-   <div className="col-md-3">
-   <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> 
-   </div>      
-))
+      .then(data => data.json())
+      .then(result => getProduct(result))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  const cards = products.map(product => (
+    <div className="col-md-3" key={product.id}>
+      <Card style={{ width: '18rem', marginBottom: '20px' }}>
+        <Card.Body>
+          <Card.Title>{product.title}</Card.Title>
+          <Card.Text>
+            {product.description.substring(0, 100)}...
+          </Card.Text>
+          <Button variant="primary" href="#">
+            Go somewhere
+          </Button>
+        </Card.Body>
+      </Card>
+    </div>
+  ));
+
   return (
-        <div>
-            <h1>Product DashBoard</h1>
-            <div className="row">
-                {cards}
-            </div>
-        </div>
-    ) 
-}
+    <div>
+      <h1>Product Dashboard</h1>
+      <div className="row">
+        {cards}
+      </div>
+    </div>
+  );
+};
+
 export default Product;
